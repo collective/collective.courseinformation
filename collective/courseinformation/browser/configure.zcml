@@ -1,0 +1,72 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.courseinformation">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="coursefrontpage_view"
+      class=".coursefrontpageview.CourseFrontPageView"
+      template="coursefrontpageview.pt"
+      allowed_interface=".coursefrontpageview.ICourseFrontPageView"
+      permission="zope.Public"
+      />
+
+
+  <browser:page
+      for="*"
+      name="course_summary_view"
+      class=".course_summaryview.course_summaryView"
+      template="course_summaryview.pt"
+      allowed_interface=".course_summaryview.Icourse_summaryView"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="course_listing"
+      class=".course_listing.methods"
+      template="course_listing.pt"
+      allowed_interface=".course_listing.Icourse_listing"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="instructor_listing"
+      class=".instructor_listing.methods"
+      template="instructor_listing.pt"
+      allowed_interface=".instructor_listing.Iinstructor_listing"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="instructor_view"
+      class=".instructor_view.methods"
+      template="instructor_view.pt"
+      allowed_interface=".instructor_view.Iinstructor_view"
+      permission="zope.Public"
+      />
+
+    <browser:resource
+        name="jquery.bt.min.js"
+        file="jquery.bt.min.js"
+        />
+
+    <browser:resource
+        name="tooltip.bt.js"
+        file="tooltip.bt.js"
+        />
+
+    <browser:resource
+        name="jquery.bt.css"
+        file="jquery.bt.css"
+        />
+
+
+</configure>

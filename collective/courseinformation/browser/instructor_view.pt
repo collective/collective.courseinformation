@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.courseinformation">
+<body>
+    <div metal:fill-slot="main">
+        <tal:main-macro metal:define-macro="main"
+                        tal:define="courses view/instructor_courses;
+                                    ">
+             
+            <h1 class="documentFirstHeading"><metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+            </h1>
+            <img tal:condition="view/instructor_has_image" id="instructor-image" tal:attributes="src string:${context/absolute_url}/++atfield++image-medium" />
+            <tal:div tal:condition="context/Description">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+            </tal:div>
+
+            <tal:div tal:condition="context/getBio">
+            <p>
+            <metal:field use-macro="python:here.widget('bio', mode='view')">
+            Bio
+            </metal:field>
+            </p>
+            </tal:div>
+            <div class="courses" tal:condition="courses"
+                     id="course_instructor_section">
+<h1>Courses Taught</h1>
+            
+            <tal:block tal:repeat="course courses">
+            <a tal:attributes="href course/absolute_url">
+            <h2 tal:content="course/Title">test</h2>
+            </a>
+            <p tal:content="course/Description">Description of Instructor</p>
+            <a tal:attributes="href course/absolute_url">
+            more...
+            </a>
+            </tal:block>
+            </div>
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>

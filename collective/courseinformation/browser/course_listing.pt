@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.courseinformation">
+<body>
+    <div metal:fill-slot="main">
+       <style>
+       .course{width:25%;padding:5px;float:left;}
+       .course img{width:25%;border:1px solid #ccc;padding:5px;margin-right:5px;float:left;}
+       .morelink{float:right;margin-bottom:15px}
+       .person{margin:15px 0px;}
+       </style>
+        <tal:main-macro metal:define-macro="main"
+                        tal:define="courses view/courses;">
+           <div id="courseinfo-block">
+           <h1 class="documentFirstHeading" tal:content="container/Title">Courses</h1>
+           <tal:courses repeat="course courses">
+           <div class="course" 
+                tal:define="course_url course/getURL">
+            <a href="" tal:attributes="href course_url">
+            <h2 tal:content="course/Title"  tal:attributes="title course/Description">test</h2>
+            </a>
+            <a href="" tal:attributes="href course_url">
+            </a>
+            <p tal:condition="nothing" tal:content="course/Description">Description of Instructor</p>
+            <a class="morelink" tal:attributes="href course/getURL">
+           Read more ...  
+            </a>
+            <p class="visualClear">&nbsp;</p>
+
+            
+            </div>
+            </tal:courses>
+            <div class="visualClear">&nbsp;</div>
+            </div>
+            
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>

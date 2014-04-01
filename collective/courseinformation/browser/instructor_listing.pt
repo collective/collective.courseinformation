@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.courseinformation">
+<body>
+    <div metal:fill-slot="main">
+       <style>
+       .instructor{width:25%;padding:5px;float:left;}
+       .instructor img{width:25%;border:1px solid #ccc;padding:5px;margin-right:5px;float:left;}</style>
+        <tal:main-macro metal:define-macro="main"
+                        tal:define="instructors view/instructors;
+                                    testimonials view/testimonials">
+           <div id="instructor-block">
+           <h1>Instructors</h1>
+           <tal:instructors repeat="instructor instructors">
+           <div class="instructor" 
+                tal:define="instructor_url instructor/getURL">
+            <a href="" tal:attributes="href instructor_url">
+            <h2 tal:content="instructor/Title">test</h2>
+            </a>
+            <a href="" tal:attributes="href instructor_url">
+            <img tal:attributes="src string:${instructor_url}/++atfield++image-medium" />
+            </a>
+            <p tal:content="instructor/Description">Description of Instructor</p>
+            <h2>Courses Taught</h2>
+            <tal:block tal:repeat="course python:view.instructor_courses(instructor)">
+            <p>    <a tal:attributes="href course/absolute_url"><span tal:content="course/Title"></span></a>
+            </p>
+            </tal:block>
+
+            
+            </div>
+            </tal:instructors>
+            <div class="visualClear">&nbsp;</div>
+            </div>
+            
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>

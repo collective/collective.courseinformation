@@ -1,0 +1,4 @@
+- [ ] - register custom view as default view for course
+- [ ] - register custom view as default view for instructor
+- [ ] - register custom view as default view for testimonial
+- [ ] - create a custom portlet to highlight testimonials

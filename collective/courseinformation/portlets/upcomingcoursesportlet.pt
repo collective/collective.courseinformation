@@ -1,0 +1,25 @@
+<dl class="portlet portletUpcomingCoursesPortlet"
+    i18n:domain="collective.courseinformation.portlets">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span>
+           Header
+        </span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd">
+        Body text
+        <span tal:content="view/courses" />
+    </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span>
+           Footer
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

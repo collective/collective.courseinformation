@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="collective.courseinformation">
+
+  <!-- configure your content components here -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+  <class class=".testimonial.Testimonial">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ITestimonial"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ITestimonial"
+        />
+  </class>
+  <class class=".instructor.Instructor">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IInstructor"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IInstructor"
+        />
+  </class>
+  <class class=".course.Course">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ICourse"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ICourse"
+        />
+  </class>
+
+</configure>

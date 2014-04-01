@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.courseinformation">
+<body>
+    <div metal:fill-slot="main">
+        <tal:main-macro metal:define-macro="main" tal:define="courses view/courses">
+<h1 class="courselistheading documentFirstHeading">
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+</h1>
+      <div class="course-listing">
+       <tal:block tal:repeat="course courses">
+              <tal:coursedetails
+              tal:define="course_title course/Title;
+                          course_url  course/getURL;
+                          course_start python:context.toLocalizedTime(course.start);
+                          course_end python:context.toLocalizedTime(course.end);
+                          course_hours course/getHours|nothing;
+                          course_time course/getTime|nothing;
+                          course_description course/Description;
+                          ">
+                
+        <h3 class="inactive">
+        <span class="course-plus"><img src="arrowRight.gif" /></span>
+        <span class="course-minus"> <img src="arrowDown.gif" /></span>
+        <span class="course-date visualClear" tal:content="course_start"></span>
+        <span class="course-name" tal:content="course_title">Super Cool Course</span> 
+        </h3>
+        <div class="visualClear">
+        
+        <div class="course-description">
+            <div id="course-date-section">
+            <span tal:content="course_start">
+              December 12, 1979
+            </span>
+            -
+            <span tal:content="course_end">
+              December 12, 1979
+            </span>
+            <tal:ifhours tal:condition="course_hours">
+            Total Hours: <span tal:content="course_hours" />
+            </tal:ifhours>
+            <tal:iftime tal:condition="course_time">
+            Time: <span tal:content="course_time" />
+            </tal:iftime>
+            </div>
+
+              <span tal:content="python:plone_view.cropText(course_description,240)" />
+
+             <br />
+             <a class="more" tal:attributes="href course_url">more...</a>
+            </div>
+        </div>
+         </tal:coursedetails>
+         </tal:block>
+      </div>
+                        <div id="imported-content">
+    <div tal:condition="exists:context/getText"
+               tal:replace="structure context/getText">Footer content here
+
+"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+
+                         </div>
+                         </div>
+         <div class="visualClear"></div>
+      <style>
+        .course-description{padding:5px;border:1px solid #ccc;}
+        .course-description .more {
+          float:right;
+          font-size:120%;
+          margin:6px 5px 13px;
+}
+        .course-date{cursor:pointer;margin-right:2px;float:left;color:black;font-size:160%;}
+        .course-name{cursor:pointer;float:left;margin:0px 4px  10px;clear:left;font-size:90%;}
+        .course-plus{cursor:pointer;float:left;xmargin-bottom:10px;font-size:70%;clear:left;}
+        .course-plus img{vertical-align:middle;float:left}
+        .course-minus img{float:left}
+        .course-minus{display:none;}
+        .active .course-plus{display:none;}
+        .active .course-minus{cursor:pointer;bottom;float:left;margin-bottom:10px;
+                      display:block;
+                      font-size:90%;clear:left;}
+        .courselistheading{text-align:right}
+        .course-listing{border:1px solid #ccc;float:right;margin-left:15px;width:45%;padding:8px;}
+        h3.inactive{color:#666;}
+        h3.active{color:black;font-size:200%;}
+      </style>
+      <script>
+      jq(document).ready(function() {
+        jq('div.course-listing > div').hide()
+
+        jq('div.course-listing > h3').click(function() {
+            jq(this).next('div').toggle(400)
+            if (jq(this).attr('class') == 'inactive')
+                      {
+                        jq(this).attr('class','active')
+                      }
+            else
+                      {
+                        jq(this).attr('class','inactive')
+                      }
+                });
+
+      });
+
+      </script>
+      
+
+
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="getHours" meta_type="ZCTextIndex">
+  <indexed_attr value="getHours"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index>
+ <index name="getTime" meta_type="ZCTextIndex">
+     <indexed_attr value="getTime"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index>
+ <index name="getSchedule" meta_type="ZCTextIndex">
+     <indexed_attr value="getSchedule"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index>
+ <index name="getPrice_jm" meta_type="ZCTextIndex">
+     <indexed_attr value="getPrice_jm"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index>
+ <index name="getPrice_us" meta_type="ZCTextIndex">
+     <indexed_attr value="getPrice_us"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index>
+ <column value="getTime"/>
+ <column value="getHours"/>
+ <column value="getSchedule"/>
+ <column value="getPrice_jm"/>
+ <column value="getPrice_us"/>
+</object>
+

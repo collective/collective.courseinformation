@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.courseinformation">
+<body>
+    <div metal:fill-slot="main">
+    <style>
+#course_section{width:55%;float:left;margin-right:15px;}
+#course_instructor_section{width:35%;float:right;padding:0px 5px 10px; margin:0px 10px 0px 15px;border:1px solid #ccc;}
+#course_testimonials_section{margin-top:15px;float:left;font-style:italic;font-size:85%;}
+#course_testimonials_section h1,#course_testimonials_section h2{text-decoration:none;border-bottom:none;}
+    </style>
+        <tal:main-macro metal:define-macro="main"
+                        tal:define="instructor view/instructor;
+                                    testimonials view/testimonials">
+
+           <h1 class="documentFirstHeading">
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+           </h1>
+            <div id="course_section">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+            <div id="course_date_section">
+            <h2>Next Scheduled Date</h2>
+            <table>
+            <tr>
+            <td>
+            Start:</td><td><metal:field use-macro="python:here.widget('startDate', mode='view')">
+            Title
+            </metal:field>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            End:</td><td><metal:field use-macro="python:here.widget('endDate', mode='view')">
+            Title
+            </metal:field>
+            </td>
+            </tr>
+            </table>
+            </div>
+            <div id="course_schedule_section">
+            <h2>Schedule and General Information</h2>
+            <p class="discreet">
+            Schedules, other dates and general course information.
+            </p>
+            <metal:field use-macro="python:here.widget('schedule', mode='view')">
+            Schedule
+            </metal:field>
+            </div>
+            <div tal:condition="context/getTime">
+            <h2>Time:</h2>
+            <metal:field use-macro="python:here.widget('time', mode='view')">
+            time
+            </metal:field>
+            </div>
+            <div id="course_cost_section">
+            <h2>Duration (hours):</h2>
+            <metal:field use-macro="python:here.widget('hours', mode='view')">
+            hours
+            </metal:field>
+            </div>
+            <div id="course_cost_section">
+           <h2>Course Cost</h2>
+           <table>
+           <tr>
+            <th>USD</th><th>JMD</th>
+            </tr>
+            <tr>
+            <td>
+            <metal:field use-macro="python:here.widget('price_us', mode='view')">
+            price in us
+            </metal:field>
+            </td>
+            <td>
+            <metal:field use-macro="python:here.widget('price_jm', mode='view')">
+            price in jmd
+            </metal:field>
+            </td>
+            </tr>
+            </table>
+            </div>
+            </div>
+            <div class="instructor" tal:condition="instructor"
+                                    tal:define="instructor_url instructor/absolute_url|nothing;"
+                     id="course_instructor_section">
+<h1>Instructor</h1>
+            
+            <a tal:attributes="href instructor_url">
+            <h2 tal:content="instructor/Title">test</h2>
+            </a>
+            <a tal:attributes="href instructor_url"
+            tal:condition="view/instructor_has_image" 
+            >
+            <img src="" 
+            tal:attributes="src string:${instructor/absolute_url}/++atfield++image-thumb" />
+            </a>
+            <p tal:content="instructor/Description">Description of Instructor</p>
+            <a tal:attributes="href instructor_url">more...</a> 
+            </div>
+            <div id="course_testimonials_section" class="testimonials" tal:condition="python:len(testimonials) > 0">
+<h1>Testimonials</h1>
+            <tal:block tal:repeat="testimonial testimonials">
+            <div class="testimonial">
+            <img src="" tal:attributes="src testimonial/getIcon" />
+            <p>
+            <span tal:omit-tag=""  tal:content="structure testimonial/getStory">test</span>
+            </p>
+            <p tal:content="testimonial/getPerson" tal:condition="testimonial/getPerson" class="testimonial-person">person</p>
+            </div>
+            </tal:block>
+            </div>
+
+     <div class="visualClear">&nbsp;</div>
+        </tal:main-macro>
+    </div>
+</body>
+</html>
